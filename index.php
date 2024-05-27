@@ -18,14 +18,23 @@ try {
 session_start();
 
 $routes = [
+    // Admin
     '/Batra/admin' => ['ProductController', 'index'],
-    '/Batra/views/admin/product_show' => ['ProductController', 'show'],
-    '/Batra/views/admin/product_create' => ['ProductController', 'create'],
-    '/Batra/views/admin/product_edit' => ['ProductController', 'edit'],
+    '/Batra/admin/show' => ['ProductController', 'show'],
+    '/Batra/admin/create' => ['ProductController', 'create'],
+    '/Batra/admin/edit' => ['ProductController', 'edit'],
     '/Batra/delete' => ['ProductController', 'delete'],
 
     // User
-    '/Batra/views/users/' => ['UserController', 'index'],
+    '/Batra/' => ['UserController', 'index'],
+    '/Batra/menu_product.php' => ['UserController', 'menu'],
+
+    // Chart
+    '/Batra/cart' => ['CartController', 'viewCart'],
+    '/cart/add' => ['ProductController', 'addToCart'],
+    '/cart/update' => ['ProductController', 'updateCart'],
+    '/cart/remove' => ['ProductController', 'removeFromCart'],
+
 ];
 
 $request = strtok($_SERVER['REQUEST_URI'], '?');
