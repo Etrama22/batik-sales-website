@@ -1,5 +1,6 @@
 <?php
 require_once 'models/Product.php';
+require './config/database.php';
 
 class ProductController
 {
@@ -34,20 +35,26 @@ class ProductController
                 die('CSRF token validation failed');
             }
 
-            $name = $this->validateInput($_POST['name']);
-            $price = $this->validateInput($_POST['price']);
+            // Periksa apakah kunci 'name' dan 'price' ada dalam $_POST
+            if (isset($_POST['name']) && isset($_POST['price'])) {
+                $name = $this->validateInput($_POST['name']);
+                $price = $this->validateInput($_POST['price']);
 
-            if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-                $imagePath = 'uploads/' . basename($_FILES['image']['name']);
-                if (move_uploaded_file($_FILES['image']['tmp_name'], $imagePath)) {
-                    $this->model->create($name, $imagePath, $price);
-                    header('Location: /admin');
-                    exit();
+                if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+                    $imageName = basename($_FILES['image']['name']);
+                    $imagePath = './public/assets/imgDB/' . $imageName;
+                    if (move_uploaded_file($_FILES['image']['tmp_name'], $imagePath)) {
+                        $this->model->create($name, $imageName, $price); // Simpan hanya nama file, bukan path lengkap
+                        header('Location: /Batra/admin');
+                        exit();
+                    } else {
+                        echo "Failed to upload image.";
+                    }
                 } else {
-                    echo "Failed to upload image.";
+                    echo "Invalid image file.";
                 }
             } else {
-                echo "Invalid image file.";
+                echo "Name and price are required.";
             }
         } else {
             $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
@@ -55,38 +62,44 @@ class ProductController
         }
     }
 
+
     public function edit($id)
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-                die('CSRF token validation failed');
+                die("CSRF token validation failed");
             }
 
-            $name = $this->validateInput($_POST['name']);
-            $price = $this->validateInput($_POST['price']);
+            $id = $_POST['id'];
+            $name = $_POST['name'];
+            $price = $_POST['price'];
 
-            if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-                $imagePath = 'uploads/' . basename($_FILES['image']['name']);
-                if (move_uploaded_file($_FILES['image']['tmp_name'], $imagePath)) {
-                    $this->model->update($id, $name, $imagePath, $price);
-                    header('Location: /admin');
-                    exit();
-                } else {
-                    echo "Failed to upload image.";
-                }
+            // Proses unggah gambar
+            $edit = $_FILES['image']['name'];
+            $file_fetch_location = $_FILES['image']['tmp_name'];
+            $file_save_location = __DIR__ . '/../public/assets/imgDB/' . $edit;
+
+            // Pastikan direktori tujuan ada
+            $target_dir = __DIR__ . '/../public/assets/imgDB/';
+            if (!is_dir($target_dir)) {
+                mkdir($target_dir, 0777, true);
+            }
+
+            if (move_uploaded_file($file_fetch_location, $file_save_location)) {
+                $this->model->update($id, $name, $edit, $price);
+                header('Location: /Batra/admin');
+                exit();
             } else {
-                echo "Invalid image file.";
+                echo "Failed to upload image.";
             }
         } else {
             $product = $this->model->getById($id);
-            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
             require_once 'views/admin/product_edit.php';
         }
     }
-
     public function delete($id)
     {
         $this->model->delete($id);
-        header('Location: /admin');
+        header('Location: /Batra/admin');
     }
 }

@@ -19,6 +19,11 @@ class UserController
     public function index()
     {
         $products = $this->model->getAll();
-        require_once 'views/user/index.php';
+        require_once 'views/users/index.php';
+    }
+    public function menu()
+    {
+        $products = $this->model->getAll();
+        require_once 'views/users/menu_product.php';
     }
 }
