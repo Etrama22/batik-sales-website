@@ -1,6 +1,7 @@
 <?php
 require_once 'controllers/ProductController.php';
 require_once 'controllers/UserController.php';
+require_once 'controllers/CartController.php';
 
 // Database connection (contoh)
 $host = 'localhost';
@@ -27,13 +28,13 @@ $routes = [
 
     // User
     '/Batra/' => ['UserController', 'index'],
-    '/Batra/menu_product.php' => ['UserController', 'menu'],
+    '/Batra/menu' => ['UserController', 'menu'],
 
     // Chart
-    '/Batra/cart' => ['CartController', 'viewCart'],
-    '/cart/add' => ['ProductController', 'addToCart'],
-    '/cart/update' => ['ProductController', 'updateCart'],
-    '/cart/remove' => ['ProductController', 'removeFromCart'],
+    '/Batra/cart' => ['CartController', 'index'],
+    '/Batra/cart/add' => ['CartController', 'addToCart'],
+    '/Batra/cart/update' => ['CartController', 'updateCart'],
+    '/Batra/cart/remove' => ['CartController', 'removeFromCart'],
 
 ];
 
