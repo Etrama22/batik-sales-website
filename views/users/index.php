@@ -1,5 +1,5 @@
 <?php
-require '../../config/database.php';
+require 'config/database.php';
 
 $result = mysqli_query($conn, "SELECT * FROM products");
 ?>
@@ -14,8 +14,8 @@ $result = mysqli_query($conn, "SELECT * FROM products");
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="../../public/assets/styleHome.css">
-    <link rel="stylesheet" type="text/css" href="../fontawesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="public/assets/styleHome.css">
+    <script src="https://kit.fontawesome.com/7c85dc7fad.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <title>BATRA OFFICIAL</title>
@@ -45,7 +45,7 @@ $result = mysqli_query($conn, "SELECT * FROM products");
                         <a class="nav-link" href="#Contact">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="menu_product.php"><button type="button" class="btn btn-outline-light btn-sm">SHOP NOW</button></a>
+                        <a class="nav-link" href="/Batra/menu"><button type="button" class="btn btn-outline-light btn-sm">SHOP NOW</button></a>
                     </li>
                 </ul>
             </div>
@@ -62,13 +62,13 @@ $result = mysqli_query($conn, "SELECT * FROM products");
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="../../public/image/carousel/slide1.jpg" class="d-block w-100" alt="...">
+                <img src="public/image/carousel/slide1.jpg" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="../../public/image/carousel/slide2.jpg" class="d-block w-100" alt="...">
+                <img src="public/image/carousel/slide2.jpg" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="../../public/image/carousel/slide3.jpg" class="d-block w-100" alt="...">
+                <img src="public/image/carousel/slide3.jpg" class="d-block w-100" alt="...">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -99,7 +99,7 @@ $result = mysqli_query($conn, "SELECT * FROM products");
             <div class="row mt-3">
                 <div class="col-4">
                     <a href="https://wa.me/6285656804903?text=hi%20admin,%20I%20want%20to%20order%20a%20model%20of%201%20batik%20wrap%20skirt!">
-                        <img src="../../public/image/productBatik/warpSkirt/model1.jpg" class="img-thumbnail" alt="Rok batik1"></a>
+                        <img src="public/image/productBatik/warpSkirt/model1.jpg" class="img-thumbnail" alt="Rok batik1"></a>
                     <p class="text-center mt-3">Rok Lilit Batik - Model 1</p>
                     <p class="text-center">Harga : <?php
                                                     $queryproducts = mysqli_query($conn, "SELECT * FROM products WHERE id=1001");
@@ -109,7 +109,7 @@ $result = mysqli_query($conn, "SELECT * FROM products");
                 </div>
                 <div class="col-4">
                     <a href="https://wa.me/6285656804903?text=hi%20admin,%20I%20want%20to%20order%20a%20model%20of%202%20batik%20wrap%20skirt!">
-                        <img src="../../public/image/productBatik/warpSkirt/model2.jpg" class="img-thumbnail" alt="Rok batik2">
+                        <img src="public/image/productBatik/warpSkirt/model2.jpg" class="img-thumbnail" alt="Rok batik2">
                     </a>
                     <p class="text-center mt-3">Rok Lilit Batik - Model 2</p>
                     <p class="text-center">Harga : <?php
@@ -120,7 +120,7 @@ $result = mysqli_query($conn, "SELECT * FROM products");
                 </div>
                 <div class="col-4">
                     <a href="https://wa.me/6285656804903?text=hi%20admin,%20I%20want%20to%20order%20a%20model%20of%203%20batik%20wrap%20skirt!">
-                        <img src="../../public/image/productBatik/warpSkirt/model3.jpg" class="img-thumbnail" alt="Rok batik3"></a>
+                        <img src="public/image/productBatik/warpSkirt/model3.jpg" class="img-thumbnail" alt="Rok batik3"></a>
                     <p class="text-center mt-3">Rok Lilit Batik - Model 3</p>
                     <p class="text-center">Harga : <?php
                                                     $queryproducts = mysqli_query($conn, "SELECT * FROM products WHERE id=1003");
@@ -136,7 +136,7 @@ $result = mysqli_query($conn, "SELECT * FROM products");
                 <div class="row">
                     <div class="col-4">
                         <a href="https://wa.me/6282353259571?text=hi%20admin,%20I%20want%20to%20order%20model%201%20batik%20bag!">
-                            <img src="../../public/image/productBatik/bag/bag1.jpg" class="img-thumbnail" alt="Tas batik1"></a>
+                            <img src="public/image/productBatik/bag/bag1.jpg" class="img-thumbnail" alt="Tas batik1"></a>
                         <p class="text-center mt-3">Tas Batik - Model 1</p>
                         <p class="text-center">Harga : <?php
                                                         $queryproducts = mysqli_query($conn, "SELECT * FROM products WHERE id=2001");
@@ -146,7 +146,7 @@ $result = mysqli_query($conn, "SELECT * FROM products");
                     </div>
                     <div class="col-4">
                         <a href="https://wa.me/6282353259571?text=hi%20admin,%20I%20want%20to%20order%20model%202%20batik%20bag!">
-                            <img src="../../public/image/productBatik/bag/bag2.jpg" class="img-thumbnail" alt="Tas batik2"></a>
+                            <img src="public/image/productBatik/bag/bag2.jpg" class="img-thumbnail" alt="Tas batik2"></a>
                         <p class="text-center mt-3">Tas Batik - Model 2</p>
                         <p class="text-center">Harga : <?php
                                                         $queryproducts = mysqli_query($conn, "SELECT * FROM products WHERE id=2002");
@@ -156,7 +156,7 @@ $result = mysqli_query($conn, "SELECT * FROM products");
                     </div>
                     <div class="col-4">
                         <a href="https://wa.me/6282353259571?text=hi%20admin,%20I%20want%20to%20order%20model%203%20batik%20bag!">
-                            <img src="../../public/image/productBatik/bag/bag3.jpg" class="img-thumbnail" alt="Tas batik3"></a>
+                            <img src="public/image/productBatik/bag/bag3.jpg" class="img-thumbnail" alt="Tas batik3"></a>
                         <p class="text-center mt-3">Tas Batik - Model 3</p>
                         <p class="text-center">Harga : <?php
                                                         $queryproducts = mysqli_query($conn, "SELECT * FROM products WHERE id=2003");
@@ -173,7 +173,7 @@ $result = mysqli_query($conn, "SELECT * FROM products");
                 <div class="row">
                     <div class="col-4">
                         <a href="https://wa.me/6282353259571?text=hi%20admin,%20I%20want%20to%20order%20batik%20couple%20model%201!">
-                            <img src="../../public/image/productBatik/couple/couple1.jpeg" class="img-thumbnail" alt="Baju batik1">
+                            <img src="public/image/productBatik/couple/couple1.jpeg" class="img-thumbnail" alt="Baju batik1">
                         </a>
                         <p class="text-center mt-3">Baju Couple Batik - Model 1</p>
                         <p class="text-center">Harga : <?php
@@ -184,7 +184,7 @@ $result = mysqli_query($conn, "SELECT * FROM products");
                     </div>
                     <div class="col-4">
                         <a href="https://wa.me/6282353259571?text=hi%20admin,%20I%20want%20to%20order%20batik%20couple%20model%202!">
-                            <img src="../../public/image/productBatik/couple/couple2.jpg" class="img-thumbnail" alt="Baju batik2">
+                            <img src="public/image/productBatik/couple/couple2.jpg" class="img-thumbnail" alt="Baju batik2">
                         </a>
                         <p class="text-center mt-3">Baju Couple Batik - Model 2</p>
                         <p class="text-center">Harga : <?php
@@ -195,7 +195,7 @@ $result = mysqli_query($conn, "SELECT * FROM products");
                     </div>
                     <div class="col-4">
                         <a href="https://wa.me/6282353259571?text=hi%20admin,%20I%20want%20to%20order%20batik%20couple%20model%203!">
-                            <img src="../../public/image/productBatik/couple/couple3.jpg" class="img-thumbnail" alt="Baju batik3">
+                            <img src="public/image/productBatik/couple/couple3.jpg" class="img-thumbnail" alt="Baju batik3">
                         </a>
                         <p class="text-center mt-3">Baju Couple Batik - Model 3</p>
                         <p class="text-center">Harga : <?php
@@ -225,13 +225,13 @@ $result = mysqli_query($conn, "SELECT * FROM products");
         <div class="row justify-content-center">
             <div class="col-4">
                 <figure class="figure">
-                    <img src="../../public/image/owner/owner1.jpeg" width="400" class="rounded-circle float-start mb-3 img-fluid" alt="Muh nur ilham nurdin">
+                    <img src="public/image/owner/owner1.jpeg" width="400" class="rounded-circle float-start mb-3 img-fluid" alt="Muh nur ilham nurdin">
                     <figcaption class="figure-caption text-center">MUH. NUR ILHAM NURDIN.</figcaption>
                 </figure>
             </div>
             <div class="col-4">
                 <figure class="figure">
-                    <img src="../../public/image/owner/owner2.jpg" width="400" class="rounded-circle float-start mb-3 img-fluid" alt="Muhammad azis">
+                    <img src="public/image/owner/owner2.jpg" width="400" class="rounded-circle float-start mb-3 img-fluid" alt="Muhammad azis">
                     <figcaption class="figure-caption text-center">MUHAMMAD AZIS.</figcaption>
                 </figure>
             </div>
@@ -254,7 +254,7 @@ $result = mysqli_query($conn, "SELECT * FROM products");
             <div class="row">
                 <div class="col-4">
                     <div class="card">
-                        <img src="../../public/image/promo/promo2.png" class="card-img-top" alt="promo2">
+                        <img src="public/image/promo/promo2.png" class="card-img-top" alt="promo2">
                         <div class="card-body">
                             <p class="judul"><strong>LEBARAN SPECIAL</strong></p>
                             <p class="card-text">Rayakan hari kemenangan pada momen special anda
@@ -268,7 +268,7 @@ $result = mysqli_query($conn, "SELECT * FROM products");
                 </div>
                 <div class="col-4">
                     <div class="card">
-                        <img src="../../public/image/promo/promo1.png" class="card-img-top" alt="promo1">
+                        <img src="public/image/promo/promo1.png" class="card-img-top" alt="promo1">
                         <div class="card-body">
                             <p class="judul"><strong>INDEPENDENCE DAY</strong></p>
                             <p class="card-text">Happy Independence Day, Buat tean-teman yang sedang merayakan Hari Kemerdekaan ini, jangan bingung mau pakai apa agar tetap terlihat keren, BATRA OFFICIAL memiliki promo menarik diskon hingga <strong>50%</strong> dihari kemerdekaan ini spesial buat teman teman. Selama periode <strong>8-17 Agustus 2023.</strong> Jangan lewatkan promo menarik ini.
@@ -280,7 +280,7 @@ $result = mysqli_query($conn, "SELECT * FROM products");
                 </div>
                 <div class="col-4">
                     <div class="card">
-                        <img src="../../public/image/promo/promo3.png" class="card-img-top" alt="promo3">
+                        <img src="public/image/promo/promo3.png" class="card-img-top" alt="promo3">
                         <div class="card-body">
                             <p class="judul"><strong>NATIONAL BATIK DAY</strong></p>
                             <p class="card-text">Siapa sih yang gak tau kalau tanggal 2 Oktober adalah hari Batik Nasional, mari rayakan hari batik ini dengan menggunakan Batik.
