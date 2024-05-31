@@ -1,8 +1,13 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "", "penjualan");
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "penjualan";
 
-//check connection
-if (mysqli_connect_errno()) {
-    echo "Failed to connect to MySQL server : " . mysqli_connect_error();
-    exit();
+// Membuat koneksi
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Cek koneksi
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
