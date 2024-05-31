@@ -1,5 +1,6 @@
 <?php
-require_once 'models/Product.php';
+require 'config/database.php';
+require_once 'models/Cart.php';
 
 class CartController
 {
@@ -7,63 +8,64 @@ class CartController
 
     public function __construct($db)
     {
-        $this->model = new Product($db);
+        $this->model = new Cart($db);
     }
 
     public function index()
     {
-        $products = $this->model->getAll();
-        require_once 'views/users/menu_product.php';
-    }
-
-    public function viewCart()
-    {
-        $cart = $_SESSION['cart'] ?? [];
-        require_once 'views/users/cart.php';
+        $cartId = $_SESSION['id'] ?? null;
+        if ($cartId) {
+            $cartItems = $this->model->getCartItems($cartId);
+        } else {
+            $cartItems = [];
+        }
+        require_once 'views/cart/index.php';
     }
 
     public function addToCart()
     {
-        $productId = $_POST['id'];
         $quantity = $_POST['quantity'];
+        $price = $_POST['price'];
+        $modelOption = $_POST['model_option'];
 
-        if (!isset($_SESSION['cart'])) {
-            $_SESSION['cart'] = [];
-        }
-
-        if (isset($_SESSION['cart'][$productId])) {
-            $_SESSION['cart'][$productId] += $quantity;
+        if (!isset($_SESSION['id'])) {
+            $cartId = $this->model->createCart();
+            $_SESSION['id'] = $cartId;
         } else {
-            $_SESSION['cart'][$productId] = $quantity;
+            $cartId = $_SESSION['id'];
         }
 
-        header('Location: /cart');
+        // Ensure $productId is set before adding to cart
+        if (!empty($productId)) {
+            $this->model->addToCart($cartId, $productId, $quantity, $price, $modelOption);
+        }
+
+        header('Location: /Batra/cart');
+        exit();
     }
+
 
     public function updateCart()
     {
+        $cartId = $_SESSION['id'];
         $productId = $_POST['product_id'];
         $quantity = $_POST['quantity'];
+        $modelOption = $_POST['model_option'];
 
-        if (isset($_SESSION['cart'][$productId])) {
-            if ($quantity > 0) {
-                $_SESSION['cart'][$productId] = $quantity;
-            } else {
-                unset($_SESSION['cart'][$productId]);
-            }
-        }
+        $this->model->updateCartItem($cartId, $productId, $quantity, $modelOption);
 
-        header('Location: /cart');
+        header('Location: /Batra/cart');
+        exit();
     }
 
     public function removeFromCart()
     {
+        $cartId = $_SESSION['id'];
         $productId = $_POST['product_id'];
 
-        if (isset($_SESSION['cart'][$productId])) {
-            unset($_SESSION['cart'][$productId]);
-        }
+        $this->model->removeFromCart($cartId, $productId);
 
-        header('Location: /cart');
+        header('Location: /Batra/cart');
+        exit();
     }
 }
