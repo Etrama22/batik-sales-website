@@ -1,70 +1,89 @@
 <?php
-require 'config/database.php';
-require_once 'models/Cart.php';
+require_once 'config/database.php';
 
 class CartController
 {
-    private $model;
-
-    public function __construct($db)
+    private $cart;
+    public function viewCart()
     {
-        $this->model = new Cart($db);
-    }
-
-    public function index()
-    {
-        $cartId = $_SESSION['id'] ?? null;
-        if ($cartId) {
-            $cartItems = $this->model->getCartItems($cartId);
-        } else {
-            $cartItems = [];
-        }
-        require_once 'views/cart/index.php';
+        require 'views/cart/index.php';
     }
 
     public function addToCart()
     {
-        $quantity = $_POST['quantity'];
-        $price = $_POST['price'];
-        $modelOption = $_POST['model_option'];
+        if (isset($_POST['add_to_cart'])) {
+            $id = $_POST['id'];
+            $name = $_POST['name'];
+            $price = $_POST['price'];
+            $quantity = $_POST['quantity'];
 
-        if (!isset($_SESSION['id'])) {
-            $cartId = $this->model->createCart();
-            $_SESSION['id'] = $cartId;
-        } else {
-            $cartId = $_SESSION['id'];
+            if (isset($_SESSION['cart'])) {
+                $cart = $_SESSION['cart'];
+                $found = false;
+                foreach ($cart as &$item) {
+                    if ($item['id'] == $id) {
+                        $item['quantity'] += $quantity;
+                        $found = true;
+                        break;
+                    }
+                }
+                if (!$found) {
+                    $cart[] = array(
+                        'id' => $id,
+                        'name' => $name,
+                        'price' => $price,
+                        'quantity' => $quantity
+                    );
+                }
+            } else {
+                $cart = array();
+                $cart[] = array(
+                    'id' => $id,
+                    'name' => $name,
+                    'price' => $price,
+                    'quantity' => $quantity
+                );
+            }
+
+            $_SESSION['cart'] = $cart;
         }
-
-        // Ensure $productId is set before adding to cart
-        if (!empty($productId)) {
-            $this->model->addToCart($cartId, $productId, $quantity, $price, $modelOption);
-        }
-
         header('Location: /Batra/cart');
         exit();
     }
-
 
     public function updateCart()
     {
-        $cartId = $_SESSION['id'];
-        $productId = $_POST['product_id'];
-        $quantity = $_POST['quantity'];
-        $modelOption = $_POST['model_option'];
+        if (isset($_POST['update_cart'])) {
+            $id = $_POST['id'];
+            $quantity = $_POST['quantity'];
 
-        $this->model->updateCartItem($cartId, $productId, $quantity, $modelOption);
-
+            if (isset($_SESSION['cart'])) {
+                foreach ($_SESSION['cart'] as &$item) {
+                    if ($item['id'] == $id) {
+                        $item['quantity'] = $quantity;
+                        break;
+                    }
+                }
+            }
+        }
         header('Location: /Batra/cart');
         exit();
     }
 
-    public function removeFromCart()
+    public function deleteFromCart()
     {
-        $cartId = $_SESSION['id'];
-        $productId = $_POST['product_id'];
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
 
-        $this->model->removeFromCart($cartId, $productId);
-
+            if (isset($_SESSION['cart'])) {
+                foreach ($_SESSION['cart'] as $key => $item) {
+                    if ($item['id'] == $id) {
+                        unset($_SESSION['cart'][$key]);
+                        break;
+                    }
+                }
+            }
+        }
         header('Location: /Batra/cart');
         exit();
     }
