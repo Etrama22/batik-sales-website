@@ -98,111 +98,114 @@ $result = mysqli_query($conn, "SELECT * FROM products");
             </div>
             <div class="row mt-3">
                 <div class="col-4">
-                    <a href="https://wa.me/6285656804903?text=hi%20admin,%20I%20want%20to%20order%20a%20model%20of%201%20batik%20wrap%20skirt!">
-                        <img src="public/image/productBatik/warpSkirt/model1.jpg" class="img-thumbnail" alt="Rok batik1"></a>
-                    <p class="text-center mt-3">Rok Lilit Batik - Model 1</p>
-                    <p class="text-center">Harga : <?php
-                                                    $queryproducts = mysqli_query($conn, "SELECT * FROM products WHERE id=1001");
-                                                    $dataproducts = mysqli_fetch_assoc($queryproducts);
-                                                    ?>
-                        <?php echo $dataproducts['price'] ?></p>
+                    <?php
+                    $queryproducts = mysqli_query($conn, "SELECT * FROM products WHERE id=1001");
+                    $dataproducts = mysqli_fetch_assoc($queryproducts);
+                    ?>
+                    <?= "<img src='./public/assets/imgDB/" . $dataproducts['image'] . "'class='img-thumbnail rounded-start'>" ?>
+                    <p class="text-center mt-3"><?= $dataproducts['name'] ?></p>
                 </div>
+
+
                 <div class="col-4">
-                    <a href="https://wa.me/6285656804903?text=hi%20admin,%20I%20want%20to%20order%20a%20model%20of%202%20batik%20wrap%20skirt!">
-                        <img src="public/image/productBatik/warpSkirt/model2.jpg" class="img-thumbnail" alt="Rok batik2">
-                    </a>
-                    <p class="text-center mt-3">Rok Lilit Batik - Model 2</p>
-                    <p class="text-center">Harga : <?php
-                                                    $queryproducts = mysqli_query($conn, "SELECT * FROM products WHERE id=1002");
-                                                    $dataproducts = mysqli_fetch_assoc($queryproducts);
-                                                    ?>
-                        <?php echo $dataproducts['price'] ?></p>
+                    <?php
+                    $queryproducts = mysqli_query($conn, "SELECT * FROM products WHERE id=1002");
+                    $dataproducts = mysqli_fetch_assoc($queryproducts);
+                    ?>
+                    <?= "<img src='./public/assets/imgDB/" . $dataproducts['image'] . "'class='img-thumbnail rounded-start'>" ?>
+                    <p class="text-center mt-3"><?= $dataproducts['name'] ?></p>
                 </div>
+
+
                 <div class="col-4">
-                    <a href="https://wa.me/6285656804903?text=hi%20admin,%20I%20want%20to%20order%20a%20model%20of%203%20batik%20wrap%20skirt!">
-                        <img src="public/image/productBatik/warpSkirt/model3.jpg" class="img-thumbnail" alt="Rok batik3"></a>
-                    <p class="text-center mt-3">Rok Lilit Batik - Model 3</p>
-                    <p class="text-center">Harga : <?php
-                                                    $queryproducts = mysqli_query($conn, "SELECT * FROM products WHERE id=1003");
-                                                    $dataproducts = mysqli_fetch_assoc($queryproducts);
-                                                    ?>
-                        <?php echo $dataproducts['price'] ?></p>
+                    <?php
+                    $queryproducts = mysqli_query($conn, "SELECT * FROM products WHERE id=1003");
+                    $dataproducts = mysqli_fetch_assoc($queryproducts);
+                    ?>
+                    <?= "<img src='./public/assets/imgDB/" . $dataproducts['image'] . "'class='img-thumbnail rounded-start'>" ?>
+                    <p class="text-center mt-3"><?= $dataproducts['name'] ?></p>
+
+
                 </div>
             </div>
+
             <div class="row mt-5">
                 <div class="col mb-3">
                     <h2 class="Sarung text-center"><strong>Tas Batik</strong></h2>
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <a href="https://wa.me/6282353259571?text=hi%20admin,%20I%20want%20to%20order%20model%201%20batik%20bag!">
-                            <img src="public/image/productBatik/bag/bag1.jpg" class="img-thumbnail" alt="Tas batik1"></a>
-                        <p class="text-center mt-3">Tas Batik - Model 1</p>
-                        <p class="text-center">Harga : <?php
-                                                        $queryproducts = mysqli_query($conn, "SELECT * FROM products WHERE id=2001");
-                                                        $dataproducts = mysqli_fetch_assoc($queryproducts);
-                                                        ?>
-                            <?php echo $dataproducts['price'] ?></p>
+                        <?php
+                        $queryproducts = mysqli_query($conn, "SELECT * FROM products WHERE id=2001");
+                        $dataproducts = mysqli_fetch_assoc($queryproducts);
+                        ?>
+                        <?= "<img src='./public/assets/imgDB/" . $dataproducts['image'] . "'class='img-thumbnail rounded-start'>" ?>
+                        <p class="text-center mt-3"><?= $dataproducts['name'] ?></p>
+
+
+                    </div>
+
+
+                    <div class="col-4">
+                        <?php
+                        $queryproducts = mysqli_query($conn, "SELECT * FROM products WHERE id=2003");
+                        $dataproducts = mysqli_fetch_assoc($queryproducts);
+                        ?>
+                        <?= "<img src='./public/assets/imgDB/" . $dataproducts['image'] . "'class='img-thumbnail rounded-start'>" ?>
+                        <p class="text-center mt-3"><?= $dataproducts['name'] ?></p>
+
+                        <?php
+                        $queryproducts = mysqli_query($conn, "SELECT * FROM products WHERE id=2002");
+                        $dataproducts = mysqli_fetch_assoc($queryproducts);
+                        ?>
+
                     </div>
                     <div class="col-4">
-                        <a href="https://wa.me/6282353259571?text=hi%20admin,%20I%20want%20to%20order%20model%202%20batik%20bag!">
-                            <img src="public/image/productBatik/bag/bag2.jpg" class="img-thumbnail" alt="Tas batik2"></a>
-                        <p class="text-center mt-3">Tas Batik - Model 2</p>
-                        <p class="text-center">Harga : <?php
-                                                        $queryproducts = mysqli_query($conn, "SELECT * FROM products WHERE id=2002");
-                                                        $dataproducts = mysqli_fetch_assoc($queryproducts);
-                                                        ?>
-                            <?php echo $dataproducts['price'] ?></p>
-                    </div>
-                    <div class="col-4">
-                        <a href="https://wa.me/6282353259571?text=hi%20admin,%20I%20want%20to%20order%20model%203%20batik%20bag!">
-                            <img src="public/image/productBatik/bag/bag3.jpg" class="img-thumbnail" alt="Tas batik3"></a>
-                        <p class="text-center mt-3">Tas Batik - Model 3</p>
-                        <p class="text-center">Harga : <?php
-                                                        $queryproducts = mysqli_query($conn, "SELECT * FROM products WHERE id=2003");
-                                                        $dataproducts = mysqli_fetch_assoc($queryproducts);
-                                                        ?>
-                            <?php echo $dataproducts['price'] ?></p>
+                        <?= "<img src='./public/assets/imgDB/" . $dataproducts['image'] . "'class='img-thumbnail rounded-start'>" ?>
+                        <p class="text-center mt-3"><?= $dataproducts['name'] ?></p>
+
+
+
                     </div>
                 </div>
             </div>
+
             <div class="row mt-5">
                 <div class="col mb-3">
                     <h2 class="Sarung text-center"><strong>Baju Couple Batik</strong></h2>
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <a href="https://wa.me/6282353259571?text=hi%20admin,%20I%20want%20to%20order%20batik%20couple%20model%201!">
-                            <img src="public/image/productBatik/couple/couple1.jpeg" class="img-thumbnail" alt="Baju batik1">
-                        </a>
-                        <p class="text-center mt-3">Baju Couple Batik - Model 1</p>
-                        <p class="text-center">Harga : <?php
-                                                        $queryproducts = mysqli_query($conn, "SELECT * FROM products WHERE id=3001");
-                                                        $dataproducts = mysqli_fetch_assoc($queryproducts);
-                                                        ?>
-                            <?php echo $dataproducts['price'] ?></p>
+                        <?php
+                        $queryproducts = mysqli_query($conn, "SELECT * FROM products WHERE id=3001");
+                        $dataproducts = mysqli_fetch_assoc($queryproducts);
+                        ?>
+                        <?= "<img src='./public/assets/imgDB/" . $dataproducts['image'] . "'class='img-thumbnail rounded-start'>" ?>
+                        <p class="text-center mt-3"><?= $dataproducts['name'] ?></p>
+
+
                     </div>
+
+
                     <div class="col-4">
-                        <a href="https://wa.me/6282353259571?text=hi%20admin,%20I%20want%20to%20order%20batik%20couple%20model%202!">
-                            <img src="public/image/productBatik/couple/couple2.jpg" class="img-thumbnail" alt="Baju batik2">
-                        </a>
-                        <p class="text-center mt-3">Baju Couple Batik - Model 2</p>
-                        <p class="text-center">Harga : <?php
-                                                        $queryproducts = mysqli_query($conn, "SELECT * FROM products WHERE id=3002");
-                                                        $dataproducts = mysqli_fetch_assoc($queryproducts);
-                                                        ?>
-                            <?php echo $dataproducts['price'] ?></p>
+                        <?php
+                        $queryproducts = mysqli_query($conn, "SELECT * FROM products WHERE id=3002");
+                        $dataproducts = mysqli_fetch_assoc($queryproducts);
+                        ?>
+                        <?= "<img src='./public/assets/imgDB/" . $dataproducts['image'] . "'class='img-thumbnail rounded-start'>" ?>
+                        <p class="text-center mt-3"><?= $dataproducts['name'] ?></p>
+
+
                     </div>
+
+
                     <div class="col-4">
-                        <a href="https://wa.me/6282353259571?text=hi%20admin,%20I%20want%20to%20order%20batik%20couple%20model%203!">
-                            <img src="public/image/productBatik/couple/couple3.jpg" class="img-thumbnail" alt="Baju batik3">
-                        </a>
-                        <p class="text-center mt-3">Baju Couple Batik - Model 3</p>
-                        <p class="text-center">Harga : <?php
-                                                        $queryproducts = mysqli_query($conn, "SELECT * FROM products WHERE id=3003");
-                                                        $dataproducts = mysqli_fetch_assoc($queryproducts);
-                                                        ?>
-                            <?php echo $dataproducts['price'] ?></p>
+                        <?php
+                        $queryproducts = mysqli_query($conn, "SELECT * FROM products WHERE id=3003");
+                        $dataproducts = mysqli_fetch_assoc($queryproducts);
+                        ?>
+                        <?= "<img src='./public/assets/imgDB/" . $dataproducts['image'] . "'class='img-thumbnail rounded-start'>" ?>
+                        <p class="text-center mt-3"><?= $dataproducts['name'] ?></p>
                     </div>
                 </div>
             </div>
@@ -252,7 +255,7 @@ $result = mysqli_query($conn, "SELECT * FROM products");
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-4">
+                <div class="col-sm-4">
                     <div class="card">
                         <img src="public/image/promo/promo2.png" class="card-img-top" alt="promo2">
                         <div class="card-body">
@@ -266,7 +269,7 @@ $result = mysqli_query($conn, "SELECT * FROM products");
                         </div>
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-sm-4">
                     <div class="card">
                         <img src="public/image/promo/promo1.png" class="card-img-top" alt="promo1">
                         <div class="card-body">
@@ -278,7 +281,7 @@ $result = mysqli_query($conn, "SELECT * FROM products");
                         </div>
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-sm-4">
                     <div class="card">
                         <img src="public/image/promo/promo3.png" class="card-img-top" alt="promo3">
                         <div class="card-body">
