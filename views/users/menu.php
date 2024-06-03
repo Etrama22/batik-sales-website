@@ -30,7 +30,7 @@ include 'config/database.php'
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/Batra">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/Batra/cart"><button type="button" class="btn btn-outline-light btn-sm"><i class="fa-solid fa-cart-shopping"></i></button></a>
@@ -63,7 +63,7 @@ include 'config/database.php'
                         <?php echo $dataproducts['price']; ?>
                     </p>
                     <a href="/Batra/show?id=<?php echo htmlspecialchars($dataproducts['id'], ENT_QUOTES, 'UTF-8'); ?>">
-                        <button type="button" class="btn btn-primary"><i class="fa-solid fa-cart-plus"></i></button>
+                        <button type="button" class="btn btn-primary"><i class="fa-solid fa-eye"> View</i></button>
                     </a>
 
                 </div>
@@ -80,7 +80,9 @@ include 'config/database.php'
                     <p class="text-center">IDR.
                         <?php echo $dataproducts['price'] ?>
                     </p>
-                    <button type="button" class="btn btn-primary"><i class="fa-solid fa-cart-plus"></i></button>
+                    <a href="/Batra/show?id=<?php echo htmlspecialchars($dataproducts['id'], ENT_QUOTES, 'UTF-8'); ?>">
+                        <button type="button" class="btn btn-primary"><i class="fa-solid fa-eye"> View</i></button>
+                    </a>
                 </div>
                 <div class="col bg-light rounded-4 border shadow-lg p-3 m-5">
                     <img src="public/image/productBatik/warpSkirt/model3.jpg" class="rounded-circle w-50 m-3" alt="">
@@ -93,7 +95,9 @@ include 'config/database.php'
                     <p class="text-center">IDR.
                         <?php echo $dataproducts['price'] ?>
                     </p>
-                    <button type="button" class="btn btn-primary"><i class="fa-solid fa-cart-plus"></i></button>
+                    <a href="/Batra/show?id=<?php echo htmlspecialchars($dataproducts['id'], ENT_QUOTES, 'UTF-8'); ?>">
+                        <button type="button" class="btn btn-primary"><i class="fa-solid fa-eye"> View</i></button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -111,7 +115,9 @@ include 'config/database.php'
                                                 ?></p>
                     <p class="text-center">IDR.
                         <?php echo $dataproducts['price'] ?></p>
-                    <button type="button" class="btn btn-primary"><i class="fa-solid fa-cart-plus"></i></button>
+                    <a href="/Batra/show?id=<?php echo htmlspecialchars($dataproducts['id'], ENT_QUOTES, 'UTF-8'); ?>">
+                        <button type="button" class="btn btn-primary"><i class="fa-solid fa-eye"> View</i></button>
+                    </a>
                 </div>
 
                 <div class="col bg-light rounded-4 border shadow-lg p-3 m-5">
@@ -123,7 +129,9 @@ include 'config/database.php'
                                                 ?></p>
                     <p class="text-center">IDR.
                         <?php echo $dataproducts['price'] ?></p>
-                    <button type="button" class="btn btn-primary"><i class="fa-solid fa-eye"></i></button>
+                    <a href="/Batra/show?id=<?php echo htmlspecialchars($dataproducts['id'], ENT_QUOTES, 'UTF-8'); ?>">
+                        <button type="button" class="btn btn-primary"><i class="fa-solid fa-eye"> View</i></button>
+                    </a>
                 </div>
 
                 <div class="col bg-light rounded-4 border shadow-lg p-3 m-5">
@@ -135,7 +143,9 @@ include 'config/database.php'
                                                 ?></p>
                     <p class="text-center">IDR.
                         <?php echo $dataproducts['price'] ?></p>
-                    <button type="button" class="btn btn-primary"><i class="fa-solid fa-cart-plus"></i></button>
+                    <a href="/Batra/show?id=<?php echo htmlspecialchars($dataproducts['id'], ENT_QUOTES, 'UTF-8'); ?>">
+                        <button type="button" class="btn btn-primary"><i class="fa-solid fa-eye"> View</i></button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -153,7 +163,9 @@ include 'config/database.php'
                                                 ?></p>
                     <p class="text-center">IDR.
                         <?php echo $dataproducts['price'] ?></p>
-                    <button type="button" class="btn btn-primary"><i class="fa-solid fa-cart-plus"></i></button>
+                    <a href="/Batra/show?id=<?php echo htmlspecialchars($dataproducts['id'], ENT_QUOTES, 'UTF-8'); ?>">
+                        <button type="button" class="btn btn-primary"><i class="fa-solid fa-eye"> View</i></button>
+                    </a>
                 </div>
 
                 <div class="col bg-light rounded-4 border shadow-lg p-3 m-5">
@@ -165,7 +177,9 @@ include 'config/database.php'
                                                 ?></p>
                     <p class="text-center">IDR.
                         <?php echo $dataproducts['price'] ?></p>
-                    <button type="button" class="btn btn-primary"><i class="fa-solid fa-cart-plus"></i></button>
+                    <a href="/Batra/show?id=<?php echo htmlspecialchars($dataproducts['id'], ENT_QUOTES, 'UTF-8'); ?>">
+                        <button type="button" class="btn btn-primary"><i class="fa-solid fa-eye"> View</i></button>
+                    </a>
                 </div>
 
                 <div class="col bg-light rounded-4 border shadow-lg p-3 m-5">
@@ -177,7 +191,9 @@ include 'config/database.php'
                                                 ?></p>
                     <p class="text-center">IDR.
                         <?php echo $dataproducts['price'] ?></p>
-                    <button type="button" class="btn btn-primary"><i class="fa-solid fa-cart-plus"></i></button>
+                    <a href="/Batra/show?id=<?php echo htmlspecialchars($dataproducts['id'], ENT_QUOTES, 'UTF-8'); ?>">
+                        <button type="button" class="btn btn-primary"><i class="fa-solid fa-eye"> View</i></button>
+                    </a>
                 </div>
             </div>
         </div>
