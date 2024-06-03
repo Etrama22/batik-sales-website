@@ -1,68 +1,117 @@
 <?php
-// views/users/cart.php
+function formatRupiah($number)
+{
+    return 'Rp ' . number_format($number, 0, ',', '.');
+}
 ?>
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
+    <link rel="stylesheet" href="./public/assets/styleHome.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+GYp1yD1CZLQ4RYY3xZbIDwodRTIIXAjXKhMZjJ" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <div class="container">
-        <h1>Your Cart</h1>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #4D2121;">
+        <div class="container">
+            <a class="logo navbar-brand" href="#">Batra</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Batra/cart"><button type="button" class="btn btn-outline-light btn-sm"><i class="fa-solid fa-cart-shopping"></i></button></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2>Your Cart</h2>
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Image</th>
                     <th>Name</th>
-                    <th>Model Option</th>
-                    <th>Quantity</th>
                     <th>Price</th>
+                    <th>Quantity</th>
                     <th>Total</th>
-                    <th>Action</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <?php if (empty($cartItems)) : ?>
-                    <tr>
-                        <td colspan="7">Your cart is empty.</td>
-                    </tr>
-                <?php else : ?>
-                    <?php foreach ($cartItems as $item) : ?>
+                <?php
+                $grandTotal = 0;
+                if (isset($_SESSION['cart'])) : ?>
+                    <?php foreach ($_SESSION['cart'] as $item) :
+                        $total = $item['price'] * $item['quantity'];
+                        $grandTotal += $total;
+                    ?>
                         <tr>
-                            <td><img src="./public/assets/imgDB/<?= htmlspecialchars($item['image']) ?>" style="width: 100px;"></td>
                             <td><?= htmlspecialchars($item['name']) ?></td>
-                            <td><?= htmlspecialchars($item['model_option']) ?></td>
+                            <td><?= htmlspecialchars(formatRupiah($item['price'])) ?></td>
                             <td>
-                                <form action="/Batra/cart/update" method="post" class="d-inline">
-                                    <input type="hidden" name="id" value="<?= htmlspecialchars($item['product_id']) ?>">
-                                    <input type="hidden" name="model_option" value="<?= htmlspecialchars($item['model_option']) ?>">
-                                    <input type="number" name="quantity" value="<?= htmlspecialchars($item['quantity']) ?>" min="1" class="form-control d-inline w-auto">
-                                    <input type="hidden" name="price" value="<?= htmlspecialchars($item['price']) ?>">
-                                    <button type="submit" class="btn btn-primary">Update</button>
+                                <form action="/Batra/cart/update" method="POST" style="display:inline-block;">
+                                    <input type="hidden" name="id" value="<?= htmlspecialchars($item['id']) ?>">
+                                    <input type="number" name="quantity" value="<?= htmlspecialchars($item['quantity']) ?>" min="1" class="form-control" style="width: 80px; display: inline-block;">
+                                    <button type="submit" name="update_cart" class="btn btn-primary btn-sm">Update</button>
                                 </form>
                             </td>
-                            <td><?= htmlspecialchars($item['price']) ?></td>
-                            <td><?= htmlspecialchars($item['total']) ?></td>
+                            <td><?= htmlspecialchars(formatRupiah($total)) ?></td>
                             <td>
-                                <form action="/Batra/cart/remove" method="post" class="d-inline">
-                                    <input type="hidden" name="id" value="<?= htmlspecialchars($item['product_id']) ?>">
-                                    <button type="submit" class="btn btn-danger">Remove</button>
-                                </form>
+                                <a href="/Batra/cart/delete?id=<?= htmlspecialchars($item['id']) ?>" class="btn btn-danger btn-sm">Delete</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
+                <?php else : ?>
+                    <tr>
+                        <td colspan="5" class="text-center">Your cart is empty</td>
+                    </tr>
                 <?php endif; ?>
             </tbody>
+            <?php if (isset($_SESSION['cart'])) : ?>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" class="text-end"><strong>Grand Total:</strong></td>
+                        <td colspan="2"><?= htmlspecialchars(formatRupiah($grandTotal)) ?></td>
+                    </tr>
+                </tfoot>
+            <?php endif; ?>
         </table>
-        <a href="/Batra/menu" class="btn btn-secondary">Continue Shopping</a>
+        <?php if (isset($_SESSION['cart'])) : ?>
+            <div class="text-end">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Launch demo modal
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                ...
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
     </div>
-    <script>
-        // Add any necessary JavaScript for dynamic updates here
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
