@@ -3,9 +3,9 @@ require_once 'controllers/ProductController.php';
 require_once 'controllers/UserController.php';
 require_once 'controllers/CartController.php';
 
-// Database connection (contoh)
+// Database connection 
 $host = 'localhost';
-$dbname = 'penjualan';
+$dbname = 'BatikSalesDB';
 $username = 'root';
 $password = '';
 
@@ -29,24 +29,26 @@ $routes = [
     // User
     '/Batra/' => ['UserController', 'index'],
     '/Batra/menu' => ['UserController', 'menu'],
+    '/Batra/show' => ['UserController', 'view'],
 
-    // Chart
-    '/Batra/cart' => ['CartController', 'index'],
+    // Cart
+    '/Batra/cart' => ['CartController', 'viewCart'],
     '/Batra/cart/add' => ['CartController', 'addToCart'],
     '/Batra/cart/update' => ['CartController', 'updateCart'],
-    '/Batra/cart/remove' => ['CartController', 'removeFromCart'],
-
+    '/Batra/cart/delete' => ['CartController', 'deleteFromCart'],
 ];
 
 $request = strtok($_SERVER['REQUEST_URI'], '?');
-// echo "Request URI: " . $request . "<br>"; // Debugging output
+
 if (array_key_exists($request, $routes)) {
     list($controllerName, $method) = $routes[$request];
-    // echo "Controller: " . $controllerName . "<br>"; // Debugging output
-    // echo "Method: " . $method . "<br>"; // Debugging output
     $controller = new $controllerName($db);
     $id = $_GET['id'] ?? null;
-    call_user_func([$controller, $method], $id);
+
+    // Untuk mengakses parameter post dari form
+    $postData = $_POST ?? [];
+
+    call_user_func([$controller, $method], $id, $postData);
 } else {
     http_response_code(404);
     echo "Page not found";
