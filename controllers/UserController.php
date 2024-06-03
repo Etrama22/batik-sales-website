@@ -24,6 +24,22 @@ class UserController
     public function menu()
     {
         $products = $this->model->getAll();
-        require_once 'views/users/menu_product.php';
+        require_once 'views/users/menu.php';
+    }
+
+    public function view($id)
+    {
+        // Get product details by ID
+        $products = $this->model->getById($id);
+
+        // Check if product exists
+        if (!$products) {
+            // Jika produk tidak ditemukan, bisa ditangani sesuai kebutuhan Anda
+            echo "Product not found!";
+            return;
+        }
+
+        // Load the view to display product details
+        require_once 'views/users/view.php';
     }
 }
